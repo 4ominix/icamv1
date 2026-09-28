@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Cài đặt chung</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.yourcompany.icamv1</string>
+			<key>key</key>
+			<string>kEnabled</string>
+			<key>label</key>
+			<string>Bật Tweak</string>
+			<key>PostNotification</key>
+			<string>com.yourcompany.icamv1/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Media Camera Ảo</string>
+			<key>footerText</key>
+			<string>Chọn video hoặc ảnh từ ứng dụng Tệp (Files). Hỗ trợ: mp4, mov, jpg, png.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Chọn Ảnh / Video...</string>
+			<key>action</key>
+			<string>selectMedia:</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSStaticTextCell</string>
+			<key>label</key>
+			<string>Đang chọn:</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSStaticTextCell</string>
+			<key>label</key>
+			<string>Chưa có (Dùng mặc định)</string>
+			<key>key</key>
+			<string>kMediaPathLabel</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Tác giả</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Apply &amp; Respring</string>
+			<key>action</key>
+			<string>respring</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>icamv1 Settings</string>
+</dict>
+</plist>

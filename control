@@ -1,0 +1,9 @@
+Package: com.yourdomain.icamv1
+Name: icamv1
+Depends: mobilesubstrate, preferenceloader
+Version: 1.1.0
+Architecture: iphoneos-arm
+Description: Fake Camera for iOS 15+ (Rootless). Overwrites CVPixelBuffer to inject virtual camera video/image.
+Maintainer: Your Name
+Author: Your Name
+Section: Tweaks
