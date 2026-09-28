@@ -1,0 +1,62 @@
+name: Build Tweak (Rootless)
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build icamv1 with Theos
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Cache Theos
+        id: cache-theos
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/theos
+          key: theos-macos-${{ hashFiles('Makefile') }}
+          restore-keys: |
+            theos-macos-
+
+      - name: Setup Theos
+        if: steps.cache-theos.outputs.cache-hit != 'true'
+        run: |
+          git clone --recursive https://github.com/theos/theos.git ${{ github.workspace }}/theos
+        env:
+          THEOS: ${{ github.workspace }}/theos
+
+      - name: Install iOS SDK
+        run: |
+          curl -LO https://github.com/theos/sdks/archive/master.zip
+          unzip master.zip
+          mv sdks-master/iPhoneOS14.5.sdk ${{ github.workspace }}/theos/sdks/
+          rm -rf sdks-master master.zip
+        env:
+          THEOS: ${{ github.workspace }}/theos
+
+      - name: Install ldid
+        run: brew install ldid
+
+      - name: Build Package
+        run: |
+          make package FINALPACKAGE=1
+        env:
+          THEOS: ${{ github.workspace }}/theos
+          THEOS_PACKAGE_SCHEME: rootless
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: icamv1-Rootless-Deb
+          path: packages/*.deb
